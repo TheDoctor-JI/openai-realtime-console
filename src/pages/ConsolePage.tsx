@@ -68,18 +68,6 @@ export function ConsolePage() {
     localStorage.setItem('tmp::voice_api_key', apiKey);
   }
 
-  /**
-   * Instantiate ros nodejs to drive the robot
-   */
-
-  const rosnodejs = require('rosnodejs');
-  rosnodejs.initNode('/got4o_console_node').then(() =>{
-    const nh = rosnodejs.nh;
-    const pub = nh.advertise('/dummy_interaction', 'std_msgs/String');
-    pub.publish({data: 'Hello, ROS!'});
-  });
-
-
 
   /**
    * Instantiate:
