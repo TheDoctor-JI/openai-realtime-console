@@ -55,6 +55,7 @@ interface RealtimeEvent {
 }
 
 export function ConsolePage() {
+
   /**
    * Ask user for API Key
    * If we're using the local relay server, we don't need this
@@ -67,7 +68,6 @@ export function ConsolePage() {
   if (apiKey !== '') {
     localStorage.setItem('tmp::voice_api_key', apiKey);
   }
-
 
   /**
    * Instantiate:
