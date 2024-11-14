@@ -54,7 +54,17 @@ interface RealtimeEvent {
   event: { [key: string]: any };
 }
 
+
+class ConsoleSpeakingState {
+  constructor() {
+    this.is_speaking = false;
+  }
+  is_speaking: boolean;
+}
+
 export function ConsolePage() {
+
+  const console_speaking_state = new ConsoleSpeakingState();
 
   /**
    * Ask user for API Key
@@ -356,6 +366,7 @@ export function ConsolePage() {
               0,
               8
             );
+
           }
         }
         window.requestAnimationFrame(render);
@@ -474,12 +485,23 @@ export function ConsolePage() {
       const trackSampleOffset = await wavStreamPlayer.interrupt();
       if (trackSampleOffset?.trackId) {
         const { trackId, offset } = trackSampleOffset;
+
+        //Message the ros node to stop any accompanying behaviors
+        console_speaking_state.is_speaking = false;
+        client.indicateRobotStoppedSpeaking()
+
         await client.cancelResponse(trackId, offset);
       }
     });
     client.on('conversation.updated', async ({ item, delta }: any) => {
       const items = client.conversation.getItems();
       if (delta?.audio) {
+
+        //Message the ros node to start accompanying behaviors
+        if(!wavStreamPlayer.stream){ client.indicateRobotSpeaking(); }
+        console_speaking_state.is_speaking = true;
+
+
         wavStreamPlayer.add16BitPCM(delta.audio, item.id);
       }
       if (item.status === 'completed' && item.formatted.audio?.length) {
@@ -500,6 +522,46 @@ export function ConsolePage() {
       client.reset();
     };
   }, []);
+
+
+  /**
+   * Check whether the console is still speaking
+   */
+  const check_speaking_stop = async (
+    wavStreamPlayer: WavStreamPlayer, 
+    client: RealtimeClient, 
+    console_speaking_state: ConsoleSpeakingState) => {  
+    if(
+      wavStreamPlayer.stream
+    ){//Still speaking, do nothing
+    }
+    else{ 
+      if(console_speaking_state.is_speaking){
+        //Speaking stopped
+
+        console_speaking_state.is_speaking = false; 
+
+        client.indicateRobotStoppedSpeaking()
+      }
+    }
+  }
+
+  useEffect(() => {
+    const client = clientRef.current;
+    const wavStreamPlayer = wavStreamPlayerRef.current;
+
+    const intervalId = setInterval(() => {
+        check_speaking_stop(
+          wavStreamPlayer,
+          client,
+          console_speaking_state
+        );
+      }, 10 // Poll every 10 ms
+    );
+
+    return () => clearInterval(intervalId);
+  }, []);
+
 
   /**
    * Render the application
