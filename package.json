@@ -15,6 +15,7 @@
     "@types/react-dom": "^18.3.0",
     "dotenv": "^16.4.5",
     "leaflet": "^1.9.4",
+    "package": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
@@ -22,6 +23,7 @@
     "react-scripts": "^5.0.1",
     "sass": "^1.78.0",
     "save": "^2.9.0",
+    "source-map-support": "^0.5.21",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "ws": "^8.18.0"
@@ -55,5 +57,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "nodemon": "^3.1.7"
-  }
+  },
+  "description": "The OpenAI Realtime Console is intended as an inspector and interactive API reference for the OpenAI Realtime API. It comes packaged with two utility libraries, [openai/openai-realtime-api-beta](https://github.com/openai/openai-realtime-api-beta) that acts as a **Reference Client** (for browser and Node.js) and [`/src/lib/wavtools`](./src/lib/wavtools) which allows for simple audio management in the browser.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

@@ -1,0 +1,45 @@
+{
+    "configurations": [
+        {
+            "name": "Debug Chrome React Frontend port 3000",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "name": "Node Launch via NPM",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [ 
+                "start",
+                "debug",
+                "--preserve-symlinks"
+            ],
+        },
+        // {
+        //     "name": "Launch via NPM port 3000",
+        //     "type": "node",
+        //     "request": "launch",
+        //     "cwd": "${workspaceRoot}",
+        //     "runtimeExecutable": "npm",
+        //     "port": 3000,
+        //     "runtimeArgs": [
+        //         "run-script", 
+        //         "debug",
+        //         "--preserve-symlinks", 
+        //         "--preserve-symlinks-main"
+        //     ],
+        // },
+        // {
+        //     "name": "Attach to npm port",
+        //     "type": "node",
+        //     "request": "attach",
+        // }
+    ]
+
+}
