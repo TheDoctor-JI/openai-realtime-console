@@ -62,6 +62,8 @@ class ConsoleSpeakingState {
   is_speaking: boolean;
 }
 
+
+
 export function ConsolePage() {
 
   const console_speaking_state = new ConsoleSpeakingState();
