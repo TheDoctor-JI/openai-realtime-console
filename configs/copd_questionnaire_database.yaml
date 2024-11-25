@@ -1,0 +1,18 @@
+
+task_content:
+  q_0_coughing:
+    item_content: "the severity of coughing, 0 means no cough, 5 means coughing all the time"
+  q_1_sputum:
+    item_content: "the amount of sputum in the lungs, 0 means none, 5 means a lot"
+  q_2_chest_tightness:
+    item_content: "the experience of chest tightness, 0 means not at all, 5 means always feeling tight"
+  q_3_breathlessness:
+    item_content: "the experience of breathlessness when walking up slopes and stairs, where 0 means not at all, 5 means severly breathless"
+  q_4_difficulty_moving:
+    item_content: "the difficulty of moving around at home, where 0 means no difficulty at all, 5 means extremely difficult"
+  q_5_traveling:  
+    item_content: "the confidence of going outdoors, where 0 means very confident, 5 means no confidence at all"
+  q_6_sleep_difficulty:
+    item_content: "the sleep conditions, where 0 means no problem sleeping, 5 means loss of sleep due to breathing difficulties"
+  q_7_level_energy:
+    item_content: "the level of energy, where 0 means having lots of energy, 5 means lack energy to do anything"

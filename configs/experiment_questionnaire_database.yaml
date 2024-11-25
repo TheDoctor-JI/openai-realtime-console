@@ -1,0 +1,81 @@
+# #
+# Slot-filling and open-ended questions
+# #
+
+q_sf_1: "During the past month, when have you usually gone to bed?"
+q_oe_1: "What is the main reason that influences your usual bedtime?"
+
+q_sf_2: "During the past month, how long (in minutes) has it taken you to fall asleep each night?"
+q_oe_2: "What factors contribute to how quickly you fall asleep?"
+
+q_sf_3: "During the past month, when have you usually gotten up in the morning?"
+q_oe_3: "What primarily determines your usual wake-up time?"
+
+q_sf_4: "During the past month, how many actual hours of sleep did you get at night? (This may be different than the number of hours you spend in bed.)"
+q_oe_4: "What do you think is the main reason for the difference between time spent in bed and actual sleep time?"
+
+q_sf_5: "During the past month, how many times did you wake up during the night on average?"
+q_oe_5: "What are the most common reasons you find yourself waking up during the night?"
+
+q_sf_6: "During the past month, how many days per week did you take naps during the day, and how long were these naps on average?"
+q_oe_6: "What usually prompts you to take naps during the day?"
+
+
+
+
+# # #
+# Matrix questions
+# # #
+mt_q_rate_scheme: "Choose from the following options:\n\t(1) Not during the past month\n\t(2) Less than once a week\n\t(3) Once or twice a week\n\t(4) Three or more times a week"
+
+mt_q_common_prefix: "During the past month, how often have you had trouble sleeping because you"
+
+q_mt_1: "{mt_q_common_prefix} couldn't get to sleep within 30 minutes? {mt_q_rate_scheme}"
+
+q_mt_2: "{mt_q_common_prefix} woke up in the middle of the night or early morning? {mt_q_rate_scheme}"
+
+q_mt_3: "{mt_q_common_prefix} couldn't breathe comfortably? {mt_q_rate_scheme}"
+
+q_mt_4: "{mt_q_common_prefix} coughed or snored loudly? {mt_q_rate_scheme}"
+
+q_mt_5: "{mt_q_common_prefix} felt too cold? {mt_q_rate_scheme}"
+
+q_mt_6: "{mt_q_common_prefix} felt too hot? {mt_q_rate_scheme}"
+
+q_mt_7: "{mt_q_common_prefix} had bad dreams? {mt_q_rate_scheme}"
+
+q_mt_8: "{mt_q_common_prefix} had pain? {mt_q_rate_scheme}"
+
+q_mt_9: "{mt_q_common_prefix} had to get up to use the bathroom? {mt_q_rate_scheme}"
+
+
+
+
+# # #
+# MC questions
+# # #
+q_mc_1: "During the past month, how often have you had trouble staying awake while driving, eating meals, or engaging in social activity? Choose from the following options:\n\t(1) Not during the past month\n\t(2) Less than once a week\n\t(3) Once or twice a week\n\t(4) Three or more times a week"
+
+q_mc_2: "During the past month, how much of a problem has it been for you to keep up enthusiasm to get things done? Choose from the following options:\n\t(1) No problem at all\n\t(2) Only a very slight problem\n\t(3) Somewhat of a problem\n\t(4) A very big problem"
+
+q_mc_3: "During the past month, how often have you taken medicine to help you sleep (either prescribed or 'over the counter')? Choose from the following options:\n\t(1) Not during the past month\n\t(2) Less than once a week\n\t(3) Once or twice a week\n\t(4) Three or more times a week"
+
+q_mc_4: "During the past month, do you have a bed partner or room mate? Choose from the following options:\n\t(1) No bed partner or room mate\n\t(2) Partner/room mate in other room\n\t(3) Partner in same room, but not same bed\n\t(4) Partner in same bed"
+
+
+
+# # #
+# Different configurations for piecing together the questionnaire
+# # #
+
+question_delimiter: "Question {idx}: "
+
+task_choices:
+  v1_1: ['q_sf_1','q_oe_1','q_mt_1','q_mt_2','q_mc_1']
+  v1_2: ['q_sf_2','q_oe_2','q_mt_3','q_mt_4','q_mc_2']
+  v1_3: ['q_sf_3','q_oe_3','q_mt_6','q_mt_7','q_mc_3']
+  v1_4: ['q_sf_4','q_oe_4','q_mt_8','q_mt_9','q_mc_4']
+
+  v2_1: ['q_sf_1','q_oe_1','q_sf_2','q_oe_2','q_mt_1', 'q_mt_2', 'q_mt_3', 'q_mc_1']
+  v2_2: ['q_sf_3','q_oe_3','q_sf_4','q_oe_4','q_mt_4', 'q_mt_5', 'q_mt_6', 'q_mc_2']
+  v2_3: ['q_sf_5','q_oe_5','q_sf_6','q_oe_6','q_mt_7', 'q_mt_8', 'q_mt_9', 'q_mc_3']
