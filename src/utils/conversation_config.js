@@ -61,10 +61,10 @@ const COPD_symptom_list = [
                                     "q_1_sputum", 
                                     "q_2_chest_tightness", 
                                     "q_3_breathlessness", 
-                                    // "q_4_difficulty_moving", 
-                                    // "q_5_traveling", 
-                                    // "q_6_sleep_difficulty", 
-                                    // "q_7_level_energy"
+                                    "q_4_difficulty_moving", 
+                                    "q_5_traveling", 
+                                    "q_6_sleep_difficulty", 
+                                    "q_7_level_energy"
                                 ];
 
 var COPD_symptom_list_str = "";
