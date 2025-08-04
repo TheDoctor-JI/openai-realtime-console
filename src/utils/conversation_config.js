@@ -214,5 +214,5 @@ Throughout the conversation you should remain professional. You can give empathe
 
 
 // export const instructions = COPD_instructions_web_embodiment_prompt;
-export const instructions = grace_companion_instructions;
+export const instructions = default_instructions;
 console.log(instructions);

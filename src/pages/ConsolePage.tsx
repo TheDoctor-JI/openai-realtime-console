@@ -202,7 +202,7 @@ export function ConsolePage() {
       },
     ]);
 
-    if (client.getTurnDetectionType() === 'server_vad') {
+    if (client.getTurnDetectionType() === 'server_vad' || client.getTurnDetectionType() === 'semantic_vad') {
       await wavRecorder.record((data) => client.appendInputAudio(data.mono));
     }
   }, []);
@@ -273,10 +273,23 @@ export function ConsolePage() {
     if (value === 'none' && wavRecorder.getStatus() === 'recording') {
       await wavRecorder.pause();
     }
+    
+    let turnDetection: any = null;
+    if (value === 'server_vad') {
+      turnDetection = { type: 'server_vad' as const };
+    } else if (value === 'semantic_vad') {
+      turnDetection = { 
+        type: 'semantic_vad' as const,
+        eagerness: 'auto' as const,
+        create_response: true,
+        interrupt_response: true
+      };
+    }
+    
     client.updateSession({
-      turn_detection: value === 'none' ? null : { type: 'server_vad' },
+      turn_detection: turnDetection,
     });
-    if (value === 'server_vad' && client.isConnected()) {
+    if ((value === 'server_vad' || value === 'semantic_vad') && client.isConnected()) {
       await wavRecorder.record((data) => client.appendInputAudio(data.mono));
     }
     setCanPushToTalk(value === 'none');
@@ -728,12 +741,18 @@ export function ConsolePage() {
             </div>
           </div>
           <div className="content-actions">
-            <Toggle
-              defaultValue={false}
-              labels={['manual', 'vad']}
-              values={['none', 'server_vad']}
-              onChange={(_, value) => changeTurnEndType(value)}
-            />
+            <div className="vad-selector">
+              <label htmlFor="vad-mode">Turn Detection:</label>
+              <select 
+                id="vad-mode" 
+                onChange={(e) => changeTurnEndType(e.target.value)}
+                defaultValue="none"
+              >
+                <option value="none">Manual</option>
+                <option value="server_vad">Server VAD</option>
+                <option value="semantic_vad">Semantic VAD</option>
+              </select>
+            </div>
             <div className="spacer" />
             {isConnected && canPushToTalk && (
               <Button
